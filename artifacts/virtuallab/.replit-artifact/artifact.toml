@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "VirtualLab"
+description = "A production-quality educational platform for Computer Science students to explore practicals, execution concepts, debugging, and faculty assessment workflows."
+version = "1.0.0"
+id = "artifacts/virtuallab"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24574
+
+[services.development]
+run = "pnpm --filter @workspace/virtuallab run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/virtuallab", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/virtuallab/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24574"
+BASE_PATH = "/"

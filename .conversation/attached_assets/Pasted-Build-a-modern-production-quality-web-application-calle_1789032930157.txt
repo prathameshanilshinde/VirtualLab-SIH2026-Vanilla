@@ -1,0 +1,555 @@
+Build a modern, production-quality web application called **VirtualLab** for our Smart India Hackathon 2026 project under Problem Statement **SIH26207 (Smart Education)**.
+
+### PROJECT PURPOSE
+
+VirtualLab is an intelligent virtual laboratory platform specifically designed for **Computer Science and Information Technology students**.
+
+The platform should go beyond being a normal online code editor or compiler.
+
+Its core purpose is to help students understand how programs execute internally by providing:
+
+* Interactive programming practicals
+* Step-by-step program execution
+* Data structure visualization
+* Memory and pointer visualization
+* Debugging and fault-diagnosis challenges
+* AI-assisted viva assessment
+* Faculty monitoring and assessment
+
+The first flagship laboratory will focus on **C++ Data Structures**, beginning with **Linked Lists**.
+
+IMPORTANT:
+Do NOT attempt to implement the complete virtual laboratory yet.
+For this first development phase, build the application's foundation, navigation, authentication UI, dashboards, and overall visual system. The actual code execution engine and memory visualization will be implemented in later phases.
+
+---
+
+## TECHNOLOGY
+
+Use:
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* Modern component architecture
+* Responsive design
+* Lucide icons
+* Use reusable components wherever appropriate
+
+Use a clean project structure that will allow us to add:
+
+* Code execution
+* Visualization engine
+* AI viva
+* Database
+* Faculty analytics
+
+later without rewriting the application.
+
+---
+
+# DESIGN SYSTEM
+
+Create a professional educational technology / developer-tool interface.
+
+The application should feel like a combination of:
+
+* Modern coding IDE
+* University laboratory platform
+* Interactive learning system
+
+Avoid making it look like a generic school LMS.
+
+Design principles:
+
+* Clean
+* Technical
+* Modern
+* Professional
+* Minimal unnecessary decoration
+* Excellent spacing
+* Strong typography
+* Responsive
+* Accessible
+* Desktop-first but mobile-friendly
+
+Use a neutral/slate interface with a restrained indigo/blue accent.
+
+Use cards, subtle borders, rounded corners, and clean data visualization placeholders.
+
+Do NOT overuse gradients, glassmorphism, excessive animations, or huge hero sections.
+
+---
+
+# APPLICATION STRUCTURE
+
+Create the following routes/pages:
+
+## Public
+
+`/`
+
+Landing page.
+
+Include:
+
+### Hero
+
+Title:
+
+**VirtualLab**
+
+Subtitle:
+
+**Learn what your code is actually doing.**
+
+Supporting text:
+
+"An intelligent virtual laboratory for Computer Science students that combines interactive practicals, program visualization, debugging challenges, and automated viva assessment."
+
+Primary CTA:
+
+**Explore Virtual Lab**
+
+Secondary CTA:
+
+**Faculty Portal**
+
+### Key capabilities
+
+Display four feature cards:
+
+1. Interactive Coding Labs
+2. Memory & Data Structure Visualization
+3. Intelligent Debugging
+4. AI Viva Assessment
+
+### How it works
+
+Show a simple four-step flow:
+
+**Write → Execute → Visualize → Understand**
+
+### Featured Laboratory
+
+Card:
+
+**Data Structures Lab**
+
+Experiment:
+
+**Linked List Operations**
+
+Status:
+
+**Coming Soon**
+
+Do not pretend that the actual laboratory functionality already exists.
+
+---
+
+# AUTHENTICATION / ROLE SELECTION
+
+Create:
+
+`/login`
+
+The login page should allow selecting:
+
+### Student
+
+* Student ID / Email
+* Password
+* Login button
+
+### Faculty
+
+* Faculty ID / Email
+* Password
+* Login button
+
+For this development phase, authentication can be mocked.
+
+After login:
+
+Student → `/student/dashboard`
+
+Faculty → `/faculty/dashboard`
+
+Make it easy to replace mock authentication with Supabase authentication later.
+
+---
+
+# STUDENT DASHBOARD
+
+Create:
+
+`/student/dashboard`
+
+Layout:
+
+### Sidebar
+
+VirtualLab logo
+
+Navigation:
+
+* Dashboard
+* My Practicals
+* Virtual Labs
+* Progress
+* Viva History
+* Profile
+
+Bottom:
+
+* Settings
+* Logout
+
+### Dashboard header
+
+"Good morning, Student"
+
+Subtitle:
+
+"Continue your practical learning."
+
+### Statistics
+
+Four cards:
+
+* Practicals Completed
+* Practicals Pending
+* Viva Score
+* Learning Progress
+
+Use realistic mock values.
+
+### Assigned Practicals
+
+Create a table/card list with:
+
+**Data Structures**
+
+Linked List Operations
+
+Status: Pending
+
+Difficulty: Medium
+
+Estimated Time: 30 min
+
+Button:
+
+**Start Lab**
+
+Also include examples for:
+
+* Stack Implementation
+* Queue Implementation
+* Binary Search Tree
+
+These can be marked as "Coming Soon".
+
+### Recent Activity
+
+Show realistic mock activities.
+
+---
+
+# FACULTY DASHBOARD
+
+Create:
+
+`/faculty/dashboard`
+
+Sidebar:
+
+* Dashboard
+* Practicals
+* Students
+* Assessments
+* Analytics
+* Settings
+
+Dashboard title:
+
+**Faculty Dashboard**
+
+Statistics:
+
+* Total Students
+* Active Practicals
+* Pending Evaluations
+* Average Class Score
+
+### Recent Submissions
+
+Table columns:
+
+* Student
+* Practical
+* Submission Time
+* Score
+* Viva
+* Status
+
+Use realistic mock data.
+
+### Class Performance
+
+Create a placeholder chart section using mock data.
+
+Label:
+
+**Practical Performance**
+
+This will later connect to actual analytics.
+
+### Common Difficulties
+
+Create a section showing:
+
+* Linked List Traversal
+* Pointer Manipulation
+* Dynamic Memory Allocation
+* Time Complexity
+
+with percentage indicators.
+
+These are currently mock values.
+
+---
+
+# LAB DIRECTORY
+
+Create:
+
+`/student/labs`
+
+Display laboratory categories:
+
+### Data Structures
+
+Status: Available
+
+Experiments:
+
+* Linked List
+* Stack
+* Queue
+* Binary Tree
+* Searching
+* Sorting
+
+### Operating Systems
+
+Status: Coming Soon
+
+### Database Systems
+
+Status: Coming Soon
+
+### Computer Networks
+
+Status: Coming Soon
+
+### Artificial Intelligence
+
+Status: Coming Soon
+
+Only Linked List should be enabled initially.
+
+---
+
+# LINKED LIST LAB PLACEHOLDER
+
+Create:
+
+`/student/lab/linked-list`
+
+This is NOT the final laboratory engine yet.
+
+Build the UI shell that we will later turn into the main interactive laboratory.
+
+Use a three-panel layout:
+
+### Left
+
+**Experiment**
+
+* Objective
+* Problem statement
+* Instructions
+* Expected learning outcomes
+
+### Center
+
+**Code Editor**
+
+Use a realistic code-editor appearance.
+
+Display sample C++ linked-list code.
+
+Include controls:
+
+* Run
+* Step
+* Reset
+* Submit
+
+These buttons can be non-functional placeholders for now.
+
+### Right
+
+**Execution**
+
+Sections:
+
+* Console Output
+* Variables
+* Visualization
+
+For Visualization, display a placeholder:
+
+**Memory & Pointer Visualization**
+
+with a simple empty-state illustration/message:
+
+"Run the program to visualize memory."
+
+This area will later become the main visualization engine.
+
+---
+
+# FACULTY PRACTICAL MANAGEMENT
+
+Create:
+
+`/faculty/practicals`
+
+Show:
+
+**Create Practical**
+
+Button.
+
+List existing practicals:
+
+* Linked List Operations
+* Stack Implementation
+* Queue Implementation
+
+Each should have:
+
+* Number of students
+* Completion percentage
+* Average score
+* Status
+
+The create button can open a modal containing:
+
+* Practical title
+* Subject
+* Description
+* Difficulty
+* Deadline
+* Learning outcomes
+
+It does not need real database persistence yet.
+
+---
+
+# GLOBAL COMPONENTS
+
+Create reusable components for:
+
+* Sidebar
+* Top navigation
+* Stat cards
+* Practical cards
+* Status badges
+* Data tables
+* Modal
+* Buttons
+* Empty states
+* Loading states
+* Toast notifications
+
+Maintain consistent styling throughout the application.
+
+---
+
+# MOCK DATA
+
+Create centralized mock data rather than scattering hardcoded values across components.
+
+Create a structure that will later allow replacement with a database.
+
+Example entities:
+
+* students
+* faculty
+* practicals
+* submissions
+* vivaResults
+* experiments
+
+---
+
+# IMPORTANT ARCHITECTURAL REQUIREMENTS
+
+Keep the code modular.
+
+Separate:
+
+* pages
+* components
+* layouts
+* data
+* types
+* utilities
+
+Do not put the entire application inside one file.
+
+Prepare the architecture so that later phases can add:
+
+1. Real authentication
+2. Database
+3. Monaco code editor
+4. C++ code execution
+5. Step-by-step execution
+6. Linked-list visualization
+7. Memory visualization
+8. Debugging challenges
+9. AI viva
+10. Faculty analytics
+
+without restructuring the entire project.
+
+---
+
+# CURRENT PHASE LIMITATION
+
+For this first phase:
+
+DO NOT implement:
+
+* Real code execution
+* AI API
+* AI viva
+* Real authentication
+* Real database
+* Compiler infrastructure
+* Complex memory simulation
+
+Only build the polished application foundation and UI.
+
+The application must run successfully with:
+
+`npm run dev`
+
+and contain no obvious console errors.
+
+Prioritize a professional, cohesive interface over adding unnecessary features.
