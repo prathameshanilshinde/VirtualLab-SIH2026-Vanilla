@@ -1,6 +1,7 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
+import path from "node:path";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
@@ -28,7 +29,13 @@ app.use(
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Serve the Vanilla frontend
+const FRONTEND_DIR = path.resolve(process.cwd(), "../../frontend");
+app.use(express.static(FRONTEND_DIR));
 
 app.use("/api", router);
 
 export default app;
+
+
+
