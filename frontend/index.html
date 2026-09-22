@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VirtualLab | Learn What Your Code Is Doing</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+        <div class="container navbar-inner">
+
+            <a href="#" class="brand">
+                <span class="brand-mark">VL</span>
+                <span class="brand-name">
+                    Virtual<span>Lab</span>
+                </span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#method">How it works</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="./login.html" class="btn btn-ghost">Sign in</a>
+                <a href="#lab" class="btn btn-primary">Enter the lab</a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        A learning instrument for computer science
+                    </div>
+
+                    <h1>
+                        Learn what your
+                        <span>code is doing.</span>
+                    </h1>
+
+                    <p class="hero-lead">
+                        Learn what your code is actually doing.
+                    </p>
+
+                    <p class="hero-description">
+                        An intelligent virtual laboratory for Computer Science
+                        students that combines interactive practicals,
+                        program visualization, debugging challenges,
+                        and automated viva assessment.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#lab" class="btn btn-primary btn-large">
+                            Explore Virtual Lab
+                        </a>
+
+                        <a href="#faculty" class="btn btn-outline btn-large">
+                            Faculty Portal
+                        </a>
+                    </div>
+
+                    <div class="social-proof">
+
+                        <div class="avatars">
+                            <span>AS</span>
+                            <span>NK</span>
+                            <span>+4k</span>
+                        </div>
+
+                        <p>
+                            Built for the way CS students actually learn.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= CODE PREVIEW ================= -->
+
+                <div class="hero-visual">
+
+                    <div class="code-card">
+
+                        <div class="code-header">
+
+                            <div class="code-file">
+                                <span class="file-dot"></span>
+                                linked_list.cpp
+                            </div>
+
+                            <span class="code-language">
+                                C++17
+                            </span>
+
+                        </div>
+
+
+                        <div class="code-body">
+
+<pre><code><span class="code-keyword">struct</span> Node {
+    <span class="code-type">int</span> data;
+    Node* next;
+};
+
+Node* head = <span class="code-keyword">nullptr</span>;
+
+<span class="code-function">insert</span>(head, <span class="code-number">42</span>);
+
+<span class="code-comment">// Watch the memory change</span></code></pre>
+
+                        </div>
+
+
+                        <div class="memory-view">
+
+                            <div class="memory-title">
+                                MEMORY VIEW
+                            </div>
+
+                            <div class="memory-row">
+
+                                <div class="memory-node">
+                                    <strong>head</strong>
+                                    <span>0x1000</span>
+                                </div>
+
+                                <div class="memory-arrow">
+                                    →
+                                </div>
+
+                                <div class="memory-node active">
+                                    <strong>Node</strong>
+                                    <span>42</span>
+                                </div>
+
+                                <div class="memory-arrow">
+                                    →
+                                </div>
+
+                                <div class="memory-node">
+                                    <strong>null</strong>
+                                    <span>0x0000</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="insight">
+
+                            <div class="insight-label">
+                                INSIGHT
+                            </div>
+
+                            <p>
+                                <strong>head</strong> now points to the newly
+                                allocated node.
+                            </p>
+
+                        </div>
+
+
+                        <div class="code-footer">
+
+                            <span>
+                                TRACE READY
+                            </span>
+
+                            <span>
+                                Visual state
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual-label">
+                        01 / OBSERVE THE CHANGE
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= METHOD ================= -->
+
+        <section class="method" id="method">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-eyebrow">
+                            The method
+                        </span>
+
+                        <h2>
+                            Four moves.
+                            <span>One clearer mind.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        VirtualLab turns abstract programming concepts
+                        into something you can see, execute, inspect,
+                        and understand.
+                    </p>
+
+                </div>
+
+
+                <div class="method-grid">
+
+                    <article class="method-card">
+
+                        <span class="method-number">01</span>
+
+                        <h3>Write</h3>
+
+                        <p>
+                            Write your program in an interactive
+                            coding environment.
+                        </p>
+
+                    </article>
+
+
+                    <article class="method-card">
+
+                        <span class="method-number">02</span>
+
+                        <h3>Execute</h3>
+
+                        <p>
+                            Run your code and observe what happens
+                            step by step.
+                        </p>
+
+                    </article>
+
+
+                    <article class="method-card">
+
+                        <span class="method-number">03</span>
+
+                        <h3>Visualize</h3>
+
+                        <p>
+                            See memory, variables, data structures,
+                            and program flow visually.
+                        </p>
+
+                    </article>
+
+
+                    <article class="method-card">
+
+                        <span class="method-number">04</span>
+
+                        <h3>Understand</h3>
+
+                        <p>
+                            Debug mistakes, complete challenges,
+                            and test your understanding.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="features" id="features">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="section-eyebrow">
+                        Built for practical learning
+                    </span>
+
+                    <h2>
+                        More than a code editor.
+                    </h2>
+
+                    <p>
+                        Everything you need to turn programming
+                        practicals into an interactive learning experience.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+                        <span class="feature-icon">⌘</span>
+                        <h3>Interactive Practicals</h3>
+                        <p>
+                            Practice programming concepts inside
+                            guided virtual laboratory environments.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <span class="feature-icon">◉</span>
+                        <h3>Program Visualization</h3>
+                        <p>
+                            Understand what happens inside memory
+                            while your program executes.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <span class="feature-icon">?</span>
+                        <h3>Automated Viva</h3>
+                        <p>
+                            Test your conceptual understanding
+                            through automated viva assessment.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <span class="feature-icon">↗</span>
+                        <h3>Debugging Challenges</h3>
+                        <p>
+                            Find errors and understand why your
+                            program behaves the way it does.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta" id="lab">
+
+            <div class="container cta-inner">
+
+                <div>
+                    <span class="section-eyebrow">
+                        Ready to experiment?
+                    </span>
+
+                    <h2>
+                        Stop memorizing.
+                        Start understanding.
+                    </h2>
+                </div>
+
+                <a href="#login" class="btn btn-lime btn-large">
+                    Enter VirtualLab
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="about">
+
+        <div class="container footer-inner">
+
+            <div class="brand">
+                <span class="brand-mark">VL</span>
+                <span class="brand-name">
+                    Virtual<span>Lab</span>
+                </span>
+            </div>
+
+            <p>
+                An intelligent virtual laboratory for Computer Science education.
+            </p>
+
+            <span>
+                © 2026 VirtualLab
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="./js/app.js"></script>
+
+</body>
+</html>

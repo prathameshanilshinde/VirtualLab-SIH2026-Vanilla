@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VirtualLab | Student Dashboard</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <a href="./index.html" class="sidebar-brand">
+            <span class="brand-mark">VL</span>
+
+            <span class="brand-name">
+                Virtual<span>Lab</span>
+            </span>
+        </a>
+
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                Workspace
+            </span>
+
+            <nav class="sidebar-nav">
+
+                <a href="./student-dashboard.html" class="sidebar-link active">
+                    <span class="sidebar-icon">⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="#labs" class="sidebar-link">
+                    <span class="sidebar-icon">▣</span>
+                    My Labs
+                </a>
+
+                <a href="#progress" class="sidebar-link">
+                    <span class="sidebar-icon">◔</span>
+                    Progress
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                Account
+            </span>
+
+            <nav class="sidebar-nav">
+
+                <a href="#settings" class="sidebar-link">
+                    <span class="sidebar-icon">⚙</span>
+                    Settings
+                </a>
+
+                <a href="./index.html" class="sidebar-link">
+                    <span class="sidebar-icon">↪</span>
+                    Sign out
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <div class="sidebar-user">
+
+            <div class="avatar">
+                PS
+            </div>
+
+            <div class="sidebar-user-info">
+                <strong>Student</strong>
+                <span>Computer Science</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-main">
+
+        <!-- TOPBAR -->
+
+        <header class="dashboard-topbar">
+
+            <div>
+                <span class="section-eyebrow">
+                    Student Workspace
+                </span>
+
+                <h1>
+                    Welcome back.
+                </h1>
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <button class="notification-button">
+                    ◔
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="topbar-user">
+
+                    <div class="avatar small">
+                        PS
+                    </div>
+
+                    <div>
+                        <strong>Student</strong>
+                        <span>2nd Year • IT</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <div class="dashboard-content">
+
+
+            <!-- STATS -->
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Labs Completed
+                    </span>
+
+                    <strong class="stat-value">
+                        08
+                    </strong>
+
+                    <span class="stat-change">
+                        +2 this week
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Current Streak
+                    </span>
+
+                    <strong class="stat-value">
+                        06
+                    </strong>
+
+                    <span class="stat-change">
+                        days
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Average Score
+                    </span>
+
+                    <strong class="stat-value">
+                        82%
+                    </strong>
+
+                    <span class="stat-change">
+                        +6% this month
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Viva Completed
+                    </span>
+
+                    <strong class="stat-value">
+                        12
+                    </strong>
+
+                    <span class="stat-change">
+                        3 this week
+                    </span>
+
+                </article>
+
+            </section>
+
+
+            <!-- CONTINUE LEARNING -->
+
+            <section class="dashboard-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            Continue learning
+                        </span>
+
+                        <h2>
+                            Pick up where you left off.
+                        </h2>
+
+                    </div>
+
+                    <a href="#labs" class="text-link">
+                        View all labs →
+                    </a>
+
+                </div>
+
+
+                <article class="continue-card">
+
+                    <div class="continue-content">
+
+                        <div class="lab-badge">
+                            DATA STRUCTURES
+                        </div>
+
+                        <h3>
+                            Linked List
+                        </h3>
+
+                        <p>
+                            Explore nodes, pointers and memory
+                            by watching your code execute step by step.
+                        </p>
+
+
+                        <div class="progress-info">
+
+                            <div class="progress-label">
+                                <span>Progress</span>
+                                <strong>64%</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <span style="width: 64%;"></span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="./linked-list.html"
+                            class="btn btn-primary"
+                        >
+                            Continue Lab
+                        </a>
+
+                    </div>
+
+
+                    <div class="continue-visual">
+
+                        <div class="visual-title">
+                            MEMORY
+                        </div>
+
+                        <div class="visual-node-row">
+
+                            <div class="visual-node">
+                                <strong>head</strong>
+                                <span>0x1000</span>
+                            </div>
+
+                            <span class="visual-arrow">→</span>
+
+                            <div class="visual-node active">
+                                <strong>42</strong>
+                                <span>0x1000</span>
+                            </div>
+
+                            <span class="visual-arrow">→</span>
+
+                            <div class="visual-node">
+                                <strong>null</strong>
+                                <span>0x0000</span>
+                            </div>
+
+                        </div>
+
+                        <div class="visual-status">
+                            TRACE READY
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- RECOMMENDED LABS -->
+
+            <section class="dashboard-section" id="labs">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            Recommended
+                        </span>
+
+                        <h2>
+                            Explore your labs.
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lab-grid">
+
+
+                    <article class="lab-card">
+
+                        <div class="lab-card-top">
+
+                            <span class="lab-number">
+                                01
+                            </span>
+
+                            <span class="lab-status available">
+                                Available
+                            </span>
+
+                        </div>
+
+                        <div class="lab-card-icon">
+                            LL
+                        </div>
+
+                        <h3>
+                            Linked List
+                        </h3>
+
+                        <p>
+                            Understand nodes, pointers,
+                            insertion and deletion.
+                        </p>
+
+                        <div class="lab-card-footer">
+
+                            <span>
+                                Data Structures
+                            </span>
+
+                            <a href="./linked-list.html">
+                                Open →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="lab-card">
+
+                        <div class="lab-card-top">
+
+                            <span class="lab-number">
+                                02
+                            </span>
+
+                            <span class="lab-status available">
+                                Available
+                            </span>
+
+                        </div>
+
+                        <div class="lab-card-icon">
+                            ST
+                        </div>
+
+                        <h3>
+                            Stack
+                        </h3>
+
+                        <p>
+                            Visualize push, pop and
+                            stack memory operations.
+                        </p>
+
+                        <div class="lab-card-footer">
+
+                            <span>
+                                Data Structures
+                            </span>
+
+                            <a href="#">
+                                Open →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="lab-card">
+
+                        <div class="lab-card-top">
+
+                            <span class="lab-number">
+                                03
+                            </span>
+
+                            <span class="lab-status coming">
+                                Coming soon
+                            </span>
+
+                        </div>
+
+                        <div class="lab-card-icon">
+                            QU
+                        </div>
+
+                        <h3>
+                            Queue
+                        </h3>
+
+                        <p>
+                            Understand FIFO operations
+                            through interactive visualization.
+                        </p>
+
+                        <div class="lab-card-footer">
+
+                            <span>
+                                Data Structures
+                            </span>
+
+                            <a href="#">
+                                Soon
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="lab-card">
+
+                        <div class="lab-card-top">
+
+                            <span class="lab-number">
+                                04
+                            </span>
+
+                            <span class="lab-status coming">
+                                Coming soon
+                            </span>
+
+                        </div>
+
+                        <div class="lab-card-icon">
+                            BT
+                        </div>
+
+                        <h3>
+                            Binary Tree
+                        </h3>
+
+                        <p>
+                            Explore tree traversal and
+                            node relationships visually.
+                        </p>
+
+                        <div class="lab-card-footer">
+
+                            <span>
+                                Data Structures
+                            </span>
+
+                            <a href="#">
+                                Soon
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- RECENT ACTIVITY -->
+
+            <section class="dashboard-section" id="progress">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            Your activity
+                        </span>
+
+                        <h2>
+                            Recent progress.
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+                    <div class="activity-row">
+
+                        <div class="activity-icon">
+                            ✓
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Linked List: Insertion
+                            </strong>
+
+                            <span>
+                                Completed practical
+                            </span>
+
+                        </div>
+
+                        <span class="activity-score">
+                            92%
+                        </span>
+
+                        <span class="activity-date">
+                            Today
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-row">
+
+                        <div class="activity-icon">
+                            ✓
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Stack Operations
+                            </strong>
+
+                            <span>
+                                Completed viva
+                            </span>
+
+                        </div>
+
+                        <span class="activity-score">
+                            84%
+                        </span>
+
+                        <span class="activity-date">
+                            Yesterday
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-row">
+
+                        <div class="activity-icon pending">
+                            →
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Linked List: Deletion
+                            </strong>
+
+                            <span>
+                                Practical in progress
+                            </span>
+
+                        </div>
+
+                        <span class="activity-score">
+                            64%
+                        </span>
+
+                        <span class="activity-date">
+                            2 days ago
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="./js/app.js"></script>
+
+</body>
+</html>

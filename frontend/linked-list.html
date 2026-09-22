@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Lab | VirtualLab</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="dashboard-body">
+
+<aside class="sidebar">
+    <div class="sidebar-brand">
+        <div class="brand-mark">VL</div>
+        <span>VirtualLab</span>
+    </div>
+
+    <div class="sidebar-section">
+        <span class="sidebar-label">WORKSPACE</span>
+
+        <a href="./student-dashboard.html" class="sidebar-link">
+            <span>⌂</span> Dashboard
+        </a>
+
+        <a href="#" class="sidebar-link active">
+            <span>▣</span> My Labs
+        </a>
+
+        <a href="#" class="sidebar-link">
+            <span>◔</span> Progress
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <span class="sidebar-label">ACCOUNT</span>
+
+        <a href="#" class="sidebar-link">
+            <span>⚙</span> Settings
+        </a>
+
+        <a href="./index.html" class="sidebar-link">
+            <span>↪</span> Sign out
+        </a>
+    </div>
+
+    <div class="sidebar-user">
+        <div class="user-avatar">PS</div>
+        <div>
+            <strong>Prathamesh</strong>
+            <small>Student</small>
+        </div>
+    </div>
+</aside>
+
+
+<main class="dashboard-main lab-page">
+
+    <header class="dashboard-topbar">
+        <div>
+            <span class="breadcrumb">Dashboard / Labs / Linked List</span>
+
+            <h1>Singly Linked List</h1>
+
+            <p class="lab-subtitle">
+                Understand how nodes and pointers change during execution.
+            </p>
+        </div>
+
+        <div class="lab-top-actions">
+            <button id="hintBtn" class="btn-outline">💡 Hint</button>
+            <button id="runBtn" class="btn-primary">▶ Run Code</button>
+            <button id="assessmentBtn" class="btn-outline">
+                Assessment
+            </button>
+        </div>
+    </header>
+
+
+    <div id="notice" class="lab-notice hidden"></div>
+
+
+    <section class="lab-workspace">
+
+        <!-- CODE -->
+        <section class="lab-panel code-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-kicker">SOURCE CODE</span>
+                    <h3>main.cpp</h3>
+                </div>
+
+                <span class="language-pill">C++17</span>
+            </div>
+
+            <div id="codeEditor" class="real-code-editor"></div>
+
+            <div class="editor-controls">
+
+                <div class="step-controls">
+                    <button id="previousBtn" class="btn-outline">
+                        ← Previous
+                    </button>
+
+                    <button id="nextBtn" class="btn-primary">
+                        Next →
+                    </button>
+                </div>
+
+                <button id="resetBtn" class="btn-outline">
+                    ↻ Reset
+                </button>
+
+            </div>
+
+            <div class="execution-progress">
+
+                <div>
+                    <span>EXECUTION PROGRESS</span>
+                    <strong id="stepCounter">1 / 6</strong>
+                </div>
+
+                <div class="progress-track">
+                    <div id="progressBar"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+        <section class="lab-right">
+
+            <!-- CONSOLE / VARIABLES -->
+            <div class="lab-panel">
+
+                <div class="panel-tabs">
+
+                    <button id="consoleTab" class="tab active">
+                        Console
+                    </button>
+
+                    <button id="variablesTab" class="tab">
+                        Variables
+                    </button>
+
+                </div>
+
+
+                <div id="consoleView" class="tab-content">
+
+                    <span class="panel-kicker">
+                        PROGRAM OUTPUT
+                    </span>
+
+                    <pre id="outputPanel">No output at this step.</pre>
+
+                    <div id="errorPanel" class="error-panel hidden"></div>
+
+                </div>
+
+
+                <div id="variablesView" class="tab-content hidden">
+
+                    <div class="variable-grid">
+
+                        <div>
+                            <span>VARIABLES</span>
+                            <pre id="variablesPanel"></pre>
+                        </div>
+
+                        <div>
+                            <span>STACK</span>
+                            <pre id="stackPanel"></pre>
+                        </div>
+
+                        <div>
+                            <span>HEAP</span>
+                            <pre id="heapPanel"></pre>
+                        </div>
+
+                        <div>
+                            <span>POINTERS</span>
+                            <pre id="pointersPanel"></pre>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LINKED LIST VISUALIZATION -->
+            <div class="lab-panel visualization-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="panel-kicker">
+                            DATA STRUCTURE
+                        </span>
+
+                        <h3>Linked List Visualization</h3>
+                    </div>
+
+                    <span id="lineBadge" class="language-pill">
+                        Line 9
+                    </span>
+
+                </div>
+
+
+                <div class="visualization">
+
+                    <div class="head-pointer">
+                        <span>head</span>
+                        <strong id="headValue">→ nullptr</strong>
+                    </div>
+
+
+                    <div id="nodesContainer" class="nodes-container">
+                    </div>
+
+
+                    <div class="change-box">
+
+                        <div class="change-title">
+                            <span>●</span>
+                            WHAT CHANGED?
+                        </div>
+
+                        <div id="changeContent">
+                            Program execution started.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TIMELINE -->
+            <div class="lab-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="panel-kicker">
+                            EXECUTION
+                        </span>
+
+                        <h3>Execution Timeline</h3>
+                    </div>
+
+                    <span id="timelineCounter">
+                        Step 1 / 6
+                    </span>
+
+                </div>
+
+                <div id="timeline" class="timeline"></div>
+
+            </div>
+
+
+            <!-- VIVA -->
+            <div class="lab-panel viva-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="panel-kicker">
+                            VIVA ASSESSMENT
+                        </span>
+
+                        <h3>Test Your Understanding</h3>
+                    </div>
+
+                    <strong id="vivaScore">
+                        Score: 0/1
+                    </strong>
+
+                </div>
+
+                <div class="viva-content">
+
+                    <p class="question-label">
+                        QUESTION 01
+                    </p>
+
+                    <h3>
+                        What does the <code>next</code> pointer store?
+                    </h3>
+
+                    <div class="answer-grid">
+
+                        <button class="answer-btn" data-correct="false">
+                            The node's data
+                        </button>
+
+                        <button class="answer-btn" data-correct="true">
+                            The address of the next node
+                        </button>
+
+                        <button class="answer-btn" data-correct="false">
+                            The size of the list
+                        </button>
+
+                        <button class="answer-btn" data-correct="false">
+                            The node index
+                        </button>
+
+                    </div>
+
+                    <p id="vivaResult"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<script src="./js/linked-list.js?v=2"></script>
+</body>
+</html>

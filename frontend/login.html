@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VirtualLab | Sign In</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <div class="login-card">
+
+            <a href="./index.html" class="login-brand">
+                <span class="brand-mark">VL</span>
+
+                <span class="brand-name">
+                    Virtual<span>Lab</span>
+                </span>
+            </a>
+
+            <div class="login-heading">
+
+                <span class="section-eyebrow">
+                    Welcome back
+                </span>
+
+                <h1>
+                    Enter the lab.
+                </h1>
+
+                <p>
+                    Sign in to continue your virtual learning experience.
+                </p>
+
+            </div>
+
+
+            <form class="login-form">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+
+                <div class="login-options">
+
+                    <label class="remember">
+                        <input type="checkbox">
+                        <span>Remember me</span>
+                    </label>
+
+                    <a href="#">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary login-button"
+                >
+                    Sign in
+                </button>
+
+            </form>
+
+
+            <div class="login-divider">
+                <span>or</span>
+            </div>
+
+
+            <div class="login-footer">
+
+                <p>
+                    New to VirtualLab?
+                    <a href="#">
+                        Create an account
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+<script>
+document.querySelector(".login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    window.location.href = "./student-dashboard.html";
+});
+</script>
+</body>
+</html>
