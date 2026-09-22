@@ -283,6 +283,7 @@ function getNodes(state) {
 
     const visited = new Set();
 
+    // Start from HEAD
     let nodeId =
         state.pointers?.head ?? null;
 
@@ -309,6 +310,28 @@ function getNodes(state) {
         nodeId =
             node.next ?? null;
     }
+
+    // Also show heap nodes that are not
+    // currently reachable from HEAD.
+    Object.keys(state.heap || {})
+        .forEach(heapNodeId => {
+
+            if (
+                !visited.has(heapNodeId)
+            ) {
+
+                const node =
+                    state.heap[heapNodeId];
+
+                nodes.push({
+                    id: heapNodeId,
+                    data: node.data,
+                    next: node.next ?? null
+                });
+
+            }
+
+        });
 
     return nodes;
 }
@@ -356,6 +379,13 @@ function renderVisualization() {
             const isHead =
                 state.pointers?.head === node.id;
 
+                const previousHead =
+    previous?.pointers?.head;
+
+const headChanged =
+    previousHead !== state.pointers?.head &&
+    state.pointers?.head === node.id;
+
             const previousNode =
                 previous?.heap?.[node.id];
 
@@ -365,6 +395,9 @@ function renderVisualization() {
             const changed =
                 JSON.stringify(previousNode) !==
                 JSON.stringify(state.heap[node.id]);
+
+                const pointerChanged =
+    previousNode?.next !== node.next;
 
             const wrapper =
                 document.createElement('div');
@@ -376,10 +409,10 @@ function renderVisualization() {
                 document.createElement('div');
 
             nodeElement.className =
-                'visual-node' +
-                (isHead ? ' is-head' : '') +
-                (isNew ? ' is-new' : '');
-
+    'visual-node' +
+    (isHead ? ' is-head' : '') +
+    (isNew ? ' is-new' : '') +
+    (headChanged ? ' head-changed' : '');
             nodeElement.innerHTML = `
                 <div class="node-header">
                     <span>${node.id}</span>
@@ -403,7 +436,7 @@ function renderVisualization() {
 
                     <div
                         class="${
-                            changed
+                            pointerChanged
                                 ? 'changed-value'
                                 : ''
                         }"
@@ -425,17 +458,26 @@ function renderVisualization() {
 
             if (node.next !== null) {
 
-                const arrow =
-                    document.createElement('div');
+    const arrow =
+        document.createElement('div');
 
-                arrow.className =
-                    'node-arrow';
+    const previousNext =
+        previous?.heap?.[node.id]?.next ?? null;
 
-                arrow.textContent =
-                    '→';
+    const relationshipChanged =
+        previousNext !== node.next;
 
-                wrapper.appendChild(arrow);
-            }
+    arrow.className =
+        'node-arrow' +
+        (relationshipChanged
+            ? ' relationship-changed'
+            : '');
+
+    arrow.textContent =
+        '→';
+
+    wrapper.appendChild(arrow);
+}
 
             nodesContainer.appendChild(wrapper);
 
@@ -448,7 +490,6 @@ function renderVisualization() {
     );
 }
 
-
 function renderChanges(
     state,
     previous
@@ -460,7 +501,7 @@ function renderChanges(
     if (currentStep === 0) {
 
         container.textContent =
-            'Program execution started. No previous state to compare.';
+            'Program execution started. HEAD is initialized to nullptr.';
 
         return;
     }
@@ -472,6 +513,16 @@ function renderChanges(
 
     const previousPointers =
         previous?.pointers || {};
+
+    const currentHeap =
+        state.heap || {};
+
+    const previousHeap =
+        previous?.heap || {};
+
+    // --------------------------------
+    // 1. Detect pointer changes
+    // --------------------------------
 
     Object.keys(currentPointers)
         .forEach(pointer => {
@@ -489,34 +540,107 @@ function renderChanges(
                     currentPointers[pointer] ??
                     'nullptr';
 
+                // HEAD movement
+                if (pointer === 'head') {
+
+                    if (to === 'nullptr') {
+
+                        changes.push(
+                            `<strong>HEAD UPDATED</strong> — head → nullptr`
+                        );
+
+                    } else {
+
+                        changes.push(
+                            `<strong>HEAD MOVED</strong> — head → ${to}`
+                        );
+                    }
+
+                }
+
+                // Other pointer movement
+                else {
+
+                    changes.push(
+                        `<strong>POINTER UPDATED</strong> — ${pointer}: ${from} → ${to}`
+                    );
+                }
+            }
+
+        });
+
+    // --------------------------------
+    // 2. Detect newly created nodes
+    // --------------------------------
+
+    Object.keys(currentHeap)
+        .forEach(nodeId => {
+
+            const before =
+                previousHeap[nodeId];
+
+            const after =
+                currentHeap[nodeId];
+
+            if (!before && after) {
+
                 changes.push(
-                    `${pointer}: ${from} → ${to}`
+                    `<strong>NEW NODE CREATED</strong> — ${nodeId}, DATA = ${after.data}`
                 );
             }
 
         });
 
-    Object.keys(
-        state.heap || {}
-    ).forEach(nodeId => {
+    // --------------------------------
+    // 3. Detect NEXT relationship changes
+    // --------------------------------
 
-        const before =
-            previous?.heap?.[nodeId];
+    Object.keys(currentHeap)
+        .forEach(nodeId => {
 
-        const after =
-            state.heap[nodeId];
+            const before =
+                previousHeap[nodeId];
 
-        if (
-            JSON.stringify(before) !==
-            JSON.stringify(after)
-        ) {
+            const after =
+                currentHeap[nodeId];
 
-            changes.push(
-                `Heap: ${nodeId} changed`
-            );
-        }
+            if (!before || !after) {
+                return;
+            }
 
-    });
+            const previousNext =
+                before.next ?? 'nullptr';
+
+            const currentNext =
+                after.next ?? 'nullptr';
+
+            if (
+                previousNext !==
+                currentNext
+            ) {
+
+                if (
+                    currentNext ===
+                    'nullptr'
+                ) {
+
+                    changes.push(
+                        `<strong>LINK REMOVED</strong> — ${nodeId}.next → nullptr`
+                    );
+
+                } else {
+
+                    changes.push(
+                        `<strong>LINK CREATED</strong> — ${nodeId}.next → ${currentNext}`
+                    );
+                }
+            }
+
+        });
+
+    // --------------------------------
+    // 4. If nothing changed
+    // --------------------------------
 
     if (changes.length === 0) {
 
@@ -752,7 +876,7 @@ async function runCode() {
     try {
 
         const response =
-            await fetch('http://localhost:4000/api/execute-cpp', 
+            await fetch('https://improved-chainsaw-qvpr47wx4r5xh4j54-4000.app.github.dev/api/execute-cpp',
                 {
                     method: 'POST',
 
