@@ -6,35 +6,36 @@
    ========================================= */
 
 :root {
-  --background: #f3f1ea;
-  --foreground: #1b2433;
+ 
+  --background: #f5f7fa;
+  --foreground: #244c3f;
 
-  --card: #faf9f5;
-  --card-foreground: #1b2433;
+  --card: #ffffff;
+  --card-foreground: #172033;
 
-  --primary: #416cf2;
-  --primary-dark: #3159d8;
-  --primary-foreground: #f9f8f2;
+  --primary: #1f4e79;
+  --primary-dark: #173a5c;
+  --primary-foreground: #ffffff;
 
-  --secondary: #e4e7ed;
-  --secondary-foreground: #1b2433;
+  --secondary: #e8edf3;
+  --secondary-foreground: #344054;
 
-  --muted: #e8e5dd;
-  --muted-foreground: #606a78;
+  --muted: #f1f4f7;
+  --muted-foreground: #667085;
 
-  --accent: #d8f25a;
-  --accent-foreground: #1b2433;
+  --accent: #dceaf7;
+  --accent-foreground: #1f4e79;
 
-  --danger: #dc493f;
-  --danger-light: #f9e1df;
+  --danger: #b54747;
+  --danger-light: #fbeaea;
 
-  --border: #c8cdd5;
-  --input: #b9c0ca;
+  --border: #d7dee7;
+  --input: #c5ced9;
 
-  --sidebar: #19212e;
-  --sidebar-foreground: #f3f0e7;
-  --sidebar-border: #313a48;
-  --sidebar-accent: #242d3b;
+  --sidebar: #172b40;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-border: #2c435a;
+  --sidebar-accent: #203d58;
 
   --font-sans: 'DM Sans', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
@@ -46,13 +47,14 @@
   --radius-xl: 1rem;
 
   --shadow-sm:
-    0 1px 2px rgba(23, 32, 47, 0.06),
-    0 2px 7px rgba(23, 32, 47, 0.04);
+    0 1px 2px rgba(23, 32, 51, 0.05),
+    0 2px 8px rgba(23, 32, 51, 0.04);
 
   --shadow-md:
-    0 14px 36px rgba(23, 32, 47, 0.08);
+    0 14px 36px rgba(23, 32, 51, 0.08);
 
   --max-width: 1240px;
+
 }
 
 /* =========================================
@@ -3904,4 +3906,1105 @@ footer {
         flex-wrap: nowrap;
         padding-bottom: 10px;
     }
+}
+/* =========================================================
+   UI IMPROVEMENTS - SIH 2026
+   Safe visual enhancement layer
+========================================================= */
+
+/* Better overall page rendering */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Smoother cards and panels */
+.lab-panel,
+.viva-card,
+.objective-box {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.lab-panel:hover,
+.viva-card:hover {
+    border-color: #c8d1e3;
+    box-shadow: 0 12px 30px rgba(25, 32, 45, 0.07);
+}
+
+/* Better primary buttons */
+.btn-primary {
+    background: #416cf2;
+    box-shadow: 0 4px 12px rgba(65, 108, 242, 0.18);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+.btn-primary:hover {
+    background: #3159d8;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(65, 108, 242, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Better outline buttons */
+.btn-outline {
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.btn-outline:hover {
+    background: #f5f7ff;
+    border-color: #9eb1ec;
+    color: #416cf2;
+    transform: translateY(-1px);
+}
+
+/* Better lab cards */
+.lab-panel {
+    border-radius: 18px;
+}
+
+/* Improve panel headers */
+.panel-header {
+    background: rgba(250, 249, 245, 0.75);
+}
+
+/* Improve code editor */
+.real-code-editor {
+    scrollbar-width: thin;
+    scrollbar-color: #536177 #172031;
+}
+
+.real-code-editor::-webkit-scrollbar {
+    width: 8px;
+}
+
+.real-code-editor::-webkit-scrollbar-track {
+    background: #172031;
+}
+
+.real-code-editor::-webkit-scrollbar-thumb {
+    background: #536177;
+    border-radius: 10px;
+}
+
+.real-code-editor::-webkit-scrollbar-thumb:hover {
+    background: #68758b;
+}
+
+/* Code line hover */
+.code-row {
+    transition: background 0.15s ease;
+}
+
+.code-row:hover {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+/* Make execution highlight more visible */
+.code-row.execution-highlight {
+    background: rgba(65, 108, 242, 0.20);
+    box-shadow: inset 3px 0 0 #416cf2;
+}
+
+/* Better progress bar */
+.progress-track {
+    height: 7px;
+    background: #dfe2dc;
+}
+
+#progressBar {
+    background: linear-gradient(
+        90deg,
+        #416cf2,
+        #6688f5
+    );
+    box-shadow: 0 0 8px rgba(65, 108, 242, 0.18);
+}
+
+/* Better tabs */
+.tab {
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.tab:hover {
+    color: #416cf2;
+}
+
+.tab.active {
+    color: #3159d8;
+}
+
+/* Better linked-list nodes */
+.visual-node {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.visual-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(25, 32, 45, 0.08);
+}
+
+.visual-node.is-head {
+    box-shadow:
+        0 8px 20px rgba(65, 108, 242, 0.12),
+        0 0 0 1px rgba(65, 108, 242, 0.08);
+}
+
+/* Better timeline interaction */
+.timeline-item {
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(2px);
+}
+
+/* Better answer buttons */
+.answer-btn {
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.answer-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(25, 32, 45, 0.06);
+}
+
+/* Better status badges */
+.status-pill,
+.language-pill,
+.lab-language {
+    border: 1px solid rgba(65, 108, 242, 0.08);
+}
+
+/* Better notice */
+.lab-notice {
+    border-left: 4px solid #416cf2;
+}
+
+/* Better focus state for code inputs */
+.code-row input:focus {
+    background: rgba(65, 108, 242, 0.08);
+}
+
+/* Better mobile spacing */
+@media (max-width: 700px) {
+    .container {
+        width: min(calc(100% - 28px), var(--max-width));
+    }
+
+    .panel-header {
+        padding: 13px 14px;
+    }
+
+    .tab-content {
+        padding: 14px;
+    }
+
+    .visualization {
+        padding: 14px;
+    }
+
+    .viva-content {
+        padding: 16px;
+    }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* =========================================================
+   FORMAL PROFESSIONAL THEME
+   VirtualLab — Academic / Enterprise UI
+========================================================= */
+
+/* ================= GLOBAL ================= */
+
+body {
+    background: #f5f7fa !important;
+    color: #172033 !important;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: #ffffff !important;
+    border-bottom: 1px solid #d7dee7 !important;
+    box-shadow: 0 2px 8px rgba(23, 32, 51, 0.04);
+}
+
+.brand-mark {
+    background: #1f4e79 !important;
+    color: #ffffff !important;
+}
+
+.brand-name {
+    color: #172033 !important;
+}
+
+.brand-name span {
+    color: #1f4e79 !important;
+}
+
+.nav-links {
+    color: #475467 !important;
+}
+
+.nav-links a:hover {
+    color: #1f4e79 !important;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-primary {
+    background: #1f4e79 !important;
+    color: #ffffff !important;
+    border-color: #1f4e79 !important;
+    box-shadow: 0 4px 12px rgba(31, 78, 121, 0.15) !important;
+}
+
+.btn-primary:hover {
+    background: #173a5c !important;
+}
+
+.btn-outline {
+    background: #ffffff !important;
+    color: #1f4e79 !important;
+    border-color: #c5ced9 !important;
+}
+
+.btn-outline:hover {
+    background: #f1f4f7 !important;
+    border-color: #1f4e79 !important;
+}
+
+.btn-ghost {
+    background: transparent !important;
+    color: #344054 !important;
+}
+
+.btn-ghost:hover {
+    background: #f1f4f7 !important;
+    color: #1f4e79 !important;
+}
+
+.btn-lime {
+    background: #1f4e79 !important;
+    color: #ffffff !important;
+}
+
+.btn-lime:hover {
+    background: #173a5c !important;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    background: #f5f7fa !important;
+}
+
+.eyebrow,
+.section-eyebrow {
+    color: #1f4e79 !important;
+}
+
+.hero h1 {
+    color: #172033 !important;
+}
+
+.hero h1 span {
+    color: #1f4e79 !important;
+}
+
+.hero-lead {
+    color: #344054 !important;
+}
+
+.hero-description {
+    color: #667085 !important;
+}
+
+/* ================= AVATARS ================= */
+
+.avatars span {
+    background: #172b40 !important;
+    border-color: #f5f7fa !important;
+}
+
+.avatars span:first-child {
+    background: #1f4e79 !important;
+}
+
+.avatars span:last-child {
+    background: #dceaf7 !important;
+    color: #1f4e79 !important;
+}
+
+/* ================= CODE CARD ================= */
+
+.code-card {
+    background: #172b40 !important;
+    color: #f8fafc !important;
+    border-color: #2c435a !important;
+}
+
+.code-header,
+.code-footer {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.code-body {
+    background: #101d2b !important;
+}
+
+.code-language {
+    color: #b7c9da !important;
+}
+
+.file-dot {
+    background: #6f94b5 !important;
+}
+
+/* Code syntax */
+.code-keyword {
+    color: #9bb8d3 !important;
+}
+
+.code-type {
+    color: #b7cee1 !important;
+}
+
+.code-function {
+    color: #7fb0d9 !important;
+}
+
+.code-number {
+    color: #d7b67a !important;
+}
+
+.code-comment {
+    color: #7f8ea0 !important;
+}
+
+/* ================= MEMORY VIEW ================= */
+
+.memory-view {
+    background: #ffffff !important;
+    color: #172033 !important;
+}
+
+.memory-title {
+    color: #667085 !important;
+}
+
+.memory-node {
+    background: #ffffff !important;
+    border-color: #cbd5df !important;
+}
+
+.memory-node.active {
+    border-color: #1f4e79 !important;
+    box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.08) !important;
+}
+
+.memory-arrow {
+    color: #1f4e79 !important;
+}
+
+/* ================= INSIGHT ================= */
+
+.insight {
+    background: #eaf1f8 !important;
+    color: #172033 !important;
+    border-left: 4px solid #1f4e79 !important;
+}
+
+.insight-label {
+    color: #1f4e79 !important;
+}
+
+.insight p {
+    color: #475467 !important;
+}
+
+/* ================= METHOD ================= */
+
+.method {
+    background: #ffffff !important;
+    border-top-color: #d7dee7 !important;
+}
+
+.section-heading h2 {
+    color: #172033 !important;
+}
+
+.section-heading h2 span {
+    color: #667085 !important;
+}
+
+.section-heading > p {
+    color: #667085 !important;
+}
+
+.method-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.method-card:hover {
+    border-color: #9fb6cc !important;
+    box-shadow: 0 10px 28px rgba(23, 32, 51, 0.07) !important;
+}
+
+.method-number {
+    color: #1f4e79 !important;
+}
+
+.method-card h3 {
+    color: #172033 !important;
+}
+
+.method-card p {
+    color: #667085 !important;
+}
+
+/* ================= FEATURES ================= */
+
+.features {
+    background: #172b40 !important;
+    color: #ffffff !important;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.feature-icon {
+    background: #dceaf7 !important;
+    color: #1f4e79 !important;
+}
+
+.feature-card h3 {
+    color: #ffffff !important;
+}
+
+.feature-card p {
+    color: #b7c3d0 !important;
+}
+
+/* ================= CTA ================= */
+
+.cta-inner {
+    background: #1f4e79 !important;
+}
+
+.cta-inner .section-eyebrow {
+    color: #d7e4f0 !important;
+}
+
+.cta-inner h2 {
+    color: #ffffff !important;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #448e6c !important;
+    border-top-color: #6fb9b4 !important;
+    color: #c4ced9 !important;
+}
+
+.footer-inner {
+    color: #aab6c4 !important;
+}
+
+footer .brand-name {
+    color: #ffffff !important;
+}
+
+footer .brand-name span {
+    color: #8fb1cf !important;
+}
+
+footer .brand-mark {
+    background: #1f4e79 !important;
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.login-page {
+    background: #f5f7fa !important;
+}
+
+.login-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+    box-shadow: 0 20px 60px rgba(23, 32, 51, 0.08) !important;
+}
+
+.login-heading h1 {
+    color: #172033 !important;
+}
+
+.login-heading p,
+.login-footer {
+    color: #667085 !important;
+}
+
+.login-form label {
+    color: #344054 !important;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    background: #ffffff !important;
+    border-color: #c5ced9 !important;
+    color: #172033 !important;
+}
+
+.login-form input:focus {
+    border-color: #1f4e79 !important;
+    box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.10) !important;
+}
+
+.login-options a,
+.login-footer a {
+    color: #1f4e79 !important;
+}
+
+.login-divider::before,
+.login-divider::after {
+    background: #d7dee7 !important;
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard-body {
+    background: #f5f7fa !important;
+}
+
+.dashboard-main {
+    background: #f5f7fa !important;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #172b40 !important;
+    color: #f8fafc !important;
+}
+
+.sidebar-brand .brand-name span {
+    color: #8fb1cf !important;
+}
+
+.sidebar-link {
+    color: #c0cad5 !important;
+}
+
+.sidebar-link:hover {
+    background: #203d58 !important;
+    color: #ffffff !important;
+}
+
+.sidebar-link.active {
+    background: #dceaf7 !important;
+    color: #1f4e79 !important;
+}
+
+.sidebar-user {
+    border-color: #2c435a !important;
+}
+
+.sidebar-user-info span {
+    color: #93a1b1 !important;
+}
+
+/* Avatar */
+.avatar {
+    background: #1f4e79 !important;
+    color: #ffffff !important;
+}
+
+/* Topbar */
+.dashboard-topbar {
+    background: #ffffff !important;
+    border-bottom-color: #d7dee7 !important;
+}
+
+.dashboard-topbar h1 {
+    color: #172033 !important;
+}
+
+.notification-button {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+    color: #475467 !important;
+}
+
+.notification-dot {
+    background: #1f4e79 !important;
+}
+
+/* Statistics */
+.stat-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.stat-label {
+    color: #667085 !important;
+}
+
+.stat-value {
+    color: #172033 !important;
+}
+
+.stat-change {
+    color: #1f4e79 !important;
+}
+
+/* Dashboard sections */
+.section-title-row h2 {
+    color: #172033 !important;
+}
+
+.text-link {
+    color: #1f4e79 !important;
+}
+
+/* Continue card */
+.continue-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.lab-badge {
+    background: #eaf1f8 !important;
+    color: #1f4e79 !important;
+}
+
+.continue-content h3 {
+    color: #172033 !important;
+}
+
+.continue-content p {
+    color: #667085 !important;
+}
+
+.progress-bar {
+    background: #e1e7ee !important;
+}
+
+.progress-bar span {
+    background: #1f4e79 !important;
+}
+
+/* Visual preview */
+.continue-visual {
+    background: #172b40 !important;
+}
+
+.visual-title {
+    color: #94a5b6 !important;
+}
+
+.visual-node {
+    background: rgba(255,255,255,0.04) !important;
+}
+
+.visual-node.active {
+    border-color: #7fa7c7 !important;
+    background: rgba(127,167,199,0.10) !important;
+}
+
+.visual-arrow,
+.visual-status {
+    color: #a9c2d7 !important;
+}
+
+/* ================= LAB CARDS ================= */
+
+.lab-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.lab-status.available {
+    background: #edf5f0 !important;
+    color: #3f7654 !important;
+}
+
+.lab-status.coming {
+    background: #eef1f4 !important;
+    color: #667085 !important;
+}
+
+.lab-card-icon {
+    background: #eaf1f8 !important;
+    color: #1f4e79 !important;
+}
+
+.lab-card h3 {
+    color: #172033 !important;
+}
+
+.lab-card p {
+    color: #667085 !important;
+}
+
+.lab-card-footer {
+    border-top-color: #e3e8ee !important;
+}
+
+.lab-card-footer a {
+    color: #1f4e79 !important;
+}
+
+/* ================= ACTIVITY ================= */
+
+.activity-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.activity-row {
+    border-bottom-color: #e3e8ee !important;
+}
+
+.activity-icon {
+    background: #edf5f0 !important;
+    color: #3f7654 !important;
+}
+
+.activity-icon.pending {
+    background: #eaf1f8 !important;
+    color: #1f4e79 !important;
+}
+
+.activity-score {
+    color: #1f4e79 !important;
+}
+
+/* =========================================================
+   LINKED LIST LAB
+========================================================= */
+
+.breadcrumb {
+    color: #667085 !important;
+}
+
+.lab-intro h2,
+.viva-header h2 {
+    color: #172033 !important;
+}
+
+.lab-intro p,
+.viva-header p {
+    color: #667085 !important;
+}
+
+.lab-badge {
+    color: #1f4e79 !important;
+}
+
+.objective-box {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.lab-panel,
+.viva-card {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.panel-header {
+    background: #ffffff !important;
+    border-bottom-color: #d7dee7 !important;
+}
+
+.panel-kicker {
+    color: #7a8796 !important;
+}
+
+.panel-header h3 {
+    color: #172033 !important;
+}
+
+/* Code editor */
+.code-editor,
+.real-code-editor {
+    background: #1b2838 !important;
+}
+
+.line-numbers,
+.code-number {
+    color: #728294 !important;
+}
+
+.code-editor textarea,
+.code-row input {
+    color: #e8edf3 !important;
+}
+
+.editor-footer,
+.editor-controls,
+.execution-progress {
+    background: #edf1f5 !important;
+    color: #667085 !important;
+}
+
+.editor-footer span:first-child {
+    color: #1f4e79 !important;
+}
+
+/* Execution */
+.code-row.execution-highlight {
+    background: rgba(31, 78, 121, 0.22) !important;
+    border-left-color: #6d9abb !important;
+}
+
+#progressBar {
+    background: #1f4e79 !important;
+}
+
+/* Tabs */
+.panel-tabs {
+    background: #edf1f5 !important;
+    border-bottom-color: #d7dee7 !important;
+}
+
+.tab {
+    color: #667085 !important;
+}
+
+.tab.active {
+    background: #ffffff !important;
+    color: #1f4e79 !important;
+}
+
+/* Output */
+#outputPanel,
+.output-panel pre {
+    background: #172b40 !important;
+    color: #dbe5ee !important;
+}
+
+.error-panel {
+    background: #fbeaea !important;
+    color: #b54747 !important;
+}
+
+/* Visualization */
+.visualization {
+    background: #f1f4f7 !important;
+}
+
+.head-pointer {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+}
+
+.head-pointer span {
+    background: #172b40 !important;
+}
+
+.head-pointer strong {
+    color: #1f4e79 !important;
+}
+
+.visual-node {
+    background: #ffffff !important;
+    border-color: #cbd5df !important;
+}
+
+.visual-node.is-head {
+    background: #eaf1f8 !important;
+    border-color: #1f4e79 !important;
+    box-shadow: 0 6px 18px rgba(31,78,121,0.10) !important;
+}
+
+.node-header span,
+.node-values small {
+    color: #7a8796 !important;
+}
+
+.node-header b {
+    background: #1f4e79 !important;
+}
+
+.node-values > div {
+    background: #f1f4f7 !important;
+}
+
+.node-values strong {
+    color: #344054 !important;
+}
+
+.node-arrow {
+    color: #1f4e79 !important;
+}
+
+/* Timeline */
+.timeline-item {
+    background: #f8fafc !important;
+    border-color: #dfe5eb !important;
+}
+
+.timeline-item.current {
+    background: #eaf1f8 !important;
+    border-color: #1f4e79 !important;
+}
+
+.timeline-item.current .timeline-number {
+    background: #1f4e79 !important;
+}
+
+.timeline-item.completed .timeline-number {
+    background: #6f8faa !important;
+}
+
+/* Viva */
+.viva-panel .panel-header > strong {
+    background: #eaf1f8 !important;
+    color: #1f4e79 !important;
+}
+
+.question-label,
+.question-number {
+    color: #1f4e79 !important;
+}
+
+.viva-content h3 {
+    color: #344054 !important;
+}
+
+.answer-btn,
+.answer-options button {
+    background: #ffffff !important;
+    border-color: #d7dee7 !important;
+    color: #475467 !important;
+}
+
+.answer-btn:hover,
+.answer-options button:hover {
+    background: #f1f4f7 !important;
+    border-color: #1f4e79 !important;
+}
+
+.answer-btn.correct,
+.answer-options button.correct {
+    background: #edf5f0 !important;
+    border-color: #6b9779 !important;
+}
+
+.answer-btn.incorrect,
+.answer-options button.incorrect {
+    background: #fbeaea !important;
+    border-color: #c97878 !important;
+}
+
+.lab-notice {
+    background: #f1f4f7 !important;
+    border-color: #d7dee7 !important;
+    border-left: 4px solid #1f4e79 !important;
+}
+
+/* Status */
+.lab-language,
+.language-pill,
+.status-pill {
+    background: #eaf1f8 !important;
+    color: #1f4e79 !important;
+    border-color: #d2dfeb !important;
+}
+
+/* =========================================================
+   FORMAL INPUTS
+========================================================= */
+
+input,
+select,
+textarea {
+    border-color: #c5ced9;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #1f4e79 !important;
+    box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.10) !important;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eef1f4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aab8c6;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8799aa;
+}
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(31, 78, 121, 0.22) !important;
+    outline-offset: 2px;
 }
