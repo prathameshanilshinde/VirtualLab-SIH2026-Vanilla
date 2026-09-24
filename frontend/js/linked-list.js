@@ -876,7 +876,7 @@ async function runCode() {
     try {
 
         const response =
-            await fetch('https://improved-chainsaw-qvpr47wx4r5xh4j54-4000.app.github.dev/api/execute-cpp',
+            await fetch('/api/execute-cpp',
                 {
                     method: 'POST',
 
