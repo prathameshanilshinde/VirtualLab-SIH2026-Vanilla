@@ -183,6 +183,7 @@ const mockExecutionStates = [
 
 let executionStates = [...mockExecutionStates];
 let currentStep = 0;
+let programOutput = '';
 let codeLines = [...initialCode];
 let vivaAnswered = false;
 
@@ -321,6 +322,24 @@ function renderVisualization() {
 
     const previous =
         executionStates[currentStep - 1];
+        if (!state) {
+    $('headValue').textContent = '→ nullptr';
+    $('lineBadge').textContent = 'No execution state';
+
+    $('nodesContainer').innerHTML = `
+        <div class="empty-heap">
+            <strong>No visualization available</strong>
+            <span>
+                Execute supported linked-list code to visualize memory.
+            </span>
+        </div>
+    `;
+
+    $('changeContent').textContent =
+        'No execution state available.';
+
+    return;
+}
 
     $('headValue').textContent =
         state.pointers?.head
@@ -541,35 +560,48 @@ function renderVariables() {
     const state =
         executionStates[currentStep];
 
+    if (!state) {
+        $('variablesPanel').textContent = '{}';
+        $('stackPanel').textContent = '{}';
+        $('heapPanel').textContent = '{}';
+        $('pointersPanel').textContent = '{}';
+        return;
+    }
+
     $('variablesPanel').textContent =
-        formatObject(
-            state.variables
-        );
+        formatObject(state.variables);
 
     $('stackPanel').textContent =
-        formatObject(
-            state.stack
-        );
+        formatObject(state.stack);
 
     $('heapPanel').textContent =
-        formatObject(
-            state.heap
-        );
+        formatObject(state.heap);
 
     $('pointersPanel').textContent =
-        formatObject(
-            state.pointers
-        );
+        formatObject(state.pointers);
 }
-
 
 function renderConsole() {
 
     const state =
         executionStates[currentStep];
 
+    if (!state) {
+
+        $('outputPanel').textContent =
+            programOutput ||
+            'No execution state available.';
+
+        $('errorPanel')
+            .classList
+            .add('hidden');
+
+        return;
+    }
+
     $('outputPanel').textContent =
         state.output ||
+        programOutput ||
         'No output at this step.';
 
     if (state.error) {
@@ -588,8 +620,6 @@ function renderConsole() {
             .add('hidden');
     }
 }
-
-
 function renderTimeline() {
 
     const timeline =
@@ -597,71 +627,62 @@ function renderTimeline() {
 
     timeline.innerHTML = '';
 
-    executionStates
-        .forEach((state, index) => {
+    if (executionStates.length === 0) {
+        timeline.innerHTML = `
+            <div class="timeline-empty">
+                No execution steps available.
+            </div>
+        `;
+        return;
+    }
 
-            const button =
-                document.createElement('button');
+    executionStates.forEach((state, index) => {
 
-            button.className =
-                'timeline-item';
+        const button =
+            document.createElement('button');
 
-            if (
-                index === currentStep
-            ) {
+        button.className =
+            'timeline-item';
 
-                button.classList.add(
-                    'current'
-                );
-            }
+        if (index === currentStep) {
+            button.classList.add('current');
+        }
 
-            if (
-                index < currentStep
-            ) {
+        if (index < currentStep) {
+            button.classList.add('completed');
+        }
 
-                button.classList.add(
-                    'completed'
-                );
-            }
-
-            button.innerHTML = `
-                <span class="timeline-number">
-                    ${
-                        index < currentStep
-                            ? '✓'
-                            : index + 1
-                    }
-                </span>
-
-                <span>
-                    <b>
-                        Step ${index + 1}
-                    </b>
-
-                    <small>
-                        ${state.code}
-                    </small>
-                </span>
-            `;
-
-            button.addEventListener(
-                'click',
-                () => {
-
-                    currentStep =
-                        index;
-
-                    render();
+        button.innerHTML = `
+            <span class="timeline-number">
+                ${
+                    index < currentStep
+                        ? '✓'
+                        : index + 1
                 }
-            );
+            </span>
 
-            timeline.appendChild(
-                button
-            );
+            <span>
+                <b>
+                    Step ${index + 1}
+                </b>
 
-        });
+                <small>
+                    ${state.code}
+                </small>
+            </span>
+        `;
+
+        button.addEventListener(
+            'click',
+            () => {
+                currentStep = index;
+                render();
+            }
+        );
+
+        timeline.appendChild(button);
+    });
 }
-
 
 function render() {
 
@@ -752,7 +773,7 @@ async function runCode() {
     try {
 
         const response =
-            await fetch('http://localhost:4000/api/execute-cpp', 
+            await fetch('/api/execute-cpp', 
                 {
                     method: 'POST',
 
@@ -785,13 +806,25 @@ async function runCode() {
 
         const result =
             await response.json();
+       
+        programOutput =
+            result.output || '';
+       if (!result.traceSupported) {
+    executionStates = [];
+    currentStep = 0;
 
-        if (
-            !response.ok ||
-            !result.success ||
-            !result.executionStates ||
-            !result.executionStates.length
-        ) {
+    showNotice(
+        'C++ code executed successfully, but visualization is not supported for this code yet.'
+    );
+
+    render();
+    return;
+}
+
+       if (
+    !response.ok ||
+    !result.success
+) {
 
             throw new Error(
                 result.error ||
@@ -818,14 +851,12 @@ async function runCode() {
             error
         );
 
-        executionStates =
-            [...mockExecutionStates];
+        executionStates = [];
+currentStep = 0;
 
-        currentStep = 0;
-
-        showNotice(
-            'Execution API unavailable. Showing demo execution.'
-        );
+showNotice(
+    'Execution API unavailable. Please try again.'
+);
 
         render();
 

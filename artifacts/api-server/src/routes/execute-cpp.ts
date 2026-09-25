@@ -5,6 +5,7 @@ import { randomUUID } from "node:crypto";
 import { mkdir, writeFile, rm } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
+import { traceLinkedList } from "../execution/linked-list-tracer";
 
 const router: IRouter = Router();
 
@@ -71,12 +72,16 @@ router.post("/execute-cpp", async (req, res) => {
         maxBuffer: 1024 * 1024,
       });
 
-      return res.json({
-        success: true,
-        output: result.stdout || "",
-        error: result.stderr || null,
-        executionStates: [],
-      });
+      const executionStates = traceLinkedList(code);
+const traceSupported = executionStates.length > 0;
+
+return res.json({
+  success: true,
+  output: result.stdout || "",
+  error: result.stderr || null,
+  executionStates,
+  traceSupported,
+});
     } catch (runtimeError: any) {
       const stderr =
         runtimeError?.stderr ||
