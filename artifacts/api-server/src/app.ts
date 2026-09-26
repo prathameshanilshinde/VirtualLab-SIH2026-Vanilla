@@ -30,6 +30,9 @@ app.use(
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Serve the Vanilla frontend
+const FRONTEND_DIR = path.resolve(process.cwd(), "../../frontend");
+app.use(express.static(FRONTEND_DIR));
 
 // Serve Vanilla frontend
 const frontendPath = path.resolve(
@@ -43,3 +46,6 @@ app.use(express.static(frontendPath));
 app.use("/api", router);
 
 export default app;
+
+
+
