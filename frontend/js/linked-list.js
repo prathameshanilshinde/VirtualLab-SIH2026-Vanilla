@@ -1,12 +1,11 @@
 const initialCode = [
     '#include <iostream>',
     'using namespace std;',
-    '',
     'struct Node {',
     '    int data;',
     '    Node* next;',
+    '    Node(int d) { data = d; next = nullptr; }',
     '};',
-    '',
     'int main() {',
     '    Node* head = nullptr;',
     '    Node* first = new Node(10);',
@@ -14,7 +13,7 @@ const initialCode = [
     '    Node* second = new Node(20);',
     '    second->next = head;',
     '    head = second;',
-    '',
+    '    cout << "Head: " << head->data << endl;',
     '    return 0;',
     '}'
 ];
@@ -191,51 +190,66 @@ const $ = id => document.getElementById(id);
 
 
 function renderEditor() {
-
     const editor = $('codeEditor');
 
-    editor.innerHTML = '';
+    let textarea = editor.querySelector('.code-textarea');
+    let lineNumbers = editor.querySelector('.code-line-numbers');
 
-    codeLines.forEach((line, index) => {
+    if (!textarea) {
+        editor.innerHTML = '';
 
-        const row = document.createElement('div');
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-editor-wrapper';
 
-        row.className = 'code-row';
+        lineNumbers = document.createElement('div');
+        lineNumbers.className = 'code-line-numbers';
 
-        if (
-            executionStates[currentStep] &&
-            index + 1 === executionStates[currentStep].line
-        ) {
-            row.classList.add('execution-highlight');
-        }
+        textarea = document.createElement('textarea');
+        textarea.className = 'code-textarea';
+        textarea.spellcheck = false;
+        textarea.wrap = 'off';
 
-        const number = document.createElement('span');
+        wrapper.appendChild(lineNumbers);
+        wrapper.appendChild(textarea);
+        editor.appendChild(wrapper);
 
-        number.className = 'code-number';
-
-        number.textContent = index + 1;
-
-        const input = document.createElement('input');
-
-        input.value = line;
-
-        input.spellcheck = false;
-
-        input.addEventListener('input', event => {
-
-            codeLines[index] = event.target.value;
-
+        textarea.addEventListener('input', () => {
+            codeLines = textarea.value.split(/\r?\n/);
+            updateLineNumbers();
         });
 
-        row.appendChild(number);
+        textarea.addEventListener('scroll', () => {
+            lineNumbers.scrollTop = textarea.scrollTop;
+        });
+    }
 
-        row.appendChild(input);
+    if (textarea.value !== codeLines.join('\n')) {
+        textarea.value = codeLines.join('\n');
+    }
 
-        editor.appendChild(row);
+    updateLineNumbers();
 
-    });
+    function updateLineNumbers() {
+        const lines = textarea.value.split(/\r?\n/);
+
+        lineNumbers.innerHTML = lines
+            .map((_, index) => {
+                const lineNumber = index + 1;
+                const state = executionStates[currentStep];
+
+                const active =
+                    state &&
+                    state.line === lineNumber
+                        ? ' active-line'
+                        : '';
+
+                return `<div class="${active}">${lineNumber}</div>`;
+            })
+            .join('');
+
+        lineNumbers.scrollTop = textarea.scrollTop;
+    }
 }
-
 
 function formatValue(value) {
 
@@ -582,42 +596,23 @@ function renderVariables() {
 }
 
 function renderConsole() {
+    const state = executionStates[currentStep];
 
-    const state =
-        executionStates[currentStep];
-
-    if (!state) {
-
-        $('outputPanel').textContent =
-            programOutput ||
-            'No execution state available.';
-
-        $('errorPanel')
-            .classList
-            .add('hidden');
-
-        return;
+    // Always show actual output from the C++ execution first.
+    if (programOutput) {
+        $('outputPanel').textContent = programOutput;
+    } else if (state && state.output) {
+        $('outputPanel').textContent = state.output;
+    } else {
+        $('outputPanel').textContent = 'No output.';
     }
 
-    $('outputPanel').textContent =
-        state.output ||
-        programOutput ||
-        'No output at this step.';
-
-    if (state.error) {
-
-        $('errorPanel').textContent =
-            state.error;
-
-        $('errorPanel')
-            .classList
-            .remove('hidden');
-
+    // Show execution error if available.
+    if (state && state.error) {
+        $('errorPanel').textContent = state.error;
+        $('errorPanel').classList.remove('hidden');
     } else {
-
-        $('errorPanel')
-            .classList
-            .add('hidden');
+        $('errorPanel').classList.add('hidden');
     }
 }
 function renderTimeline() {
@@ -757,75 +752,32 @@ function resetLab() {
 
 
 async function runCode() {
+    const code = codeLines.join('\n');
 
-    const code =
-        codeLines.join('\n');
-
-    showNotice(
-        'Running C++ code...'
-    );
+    showNotice('Running C++ code...');
 
     $('runBtn').disabled = true;
-
-    $('runBtn').textContent =
-        'Running...';
+    $('runBtn').textContent = 'Running...';
 
     try {
-
-        const response =
-            await fetch('/api/execute-cpp', 
-                {
-                    method: 'POST',
-
-                    headers: {
-                        'Content-Type':
-                            'application/json'
-                    },
-
-                    body: JSON.stringify({
-                        code
-                    })
-                }
-            );
+        const response = await fetch('/api/execute-cpp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ code })
+        });
 
         const contentType =
-            response.headers.get(
-                'content-type'
-            ) || '';
+            response.headers.get('content-type') || '';
 
-        if (
-            !contentType.includes(
-                'application/json'
-            )
-        ) {
-
-            throw new Error(
-                'Execution API is not connected. Using demo execution.'
-            );
+        if (!contentType.includes('application/json')) {
+            throw new Error('Invalid response from execution API.');
         }
 
-        const result =
-            await response.json();
-       
-        programOutput =
-            result.output || '';
-       if (!result.traceSupported) {
-    executionStates = [];
-    currentStep = 0;
+        const result = await response.json();
 
-    showNotice(
-        'C++ code executed successfully, but visualization is not supported for this code yet.'
-    );
-
-    render();
-    return;
-}
-
-       if (
-    !response.ok ||
-    !result.success
-) {
-
+        if (!response.ok || !result.success) {
             throw new Error(
                 result.error ||
                 result.message ||
@@ -833,41 +785,52 @@ async function runCode() {
             );
         }
 
-        executionStates =
-            result.executionStates;
+        programOutput = result.output || '';
 
-        currentStep = 0;
+        if (result.traceSupported && result.executionStates?.length) {
+    executionStates = result.executionStates;
+    currentStep = 0;
 
-        showNotice(
-            'C++ code executed successfully.'
-        );
+    showNotice(
+        'C++ code executed successfully.'
+    );
+} else {
+    // Keep the existing demo visualization.
+    executionStates = [...mockExecutionStates];
+    currentStep = 0;
+
+    showNotice(
+        'C++ code executed successfully. Showing demo visualization until real execution tracing is available.'
+    );
+}
 
         render();
 
     } catch (error) {
-
-        console.log(
-            'Execution API unavailable:',
+        console.error(
+            'C++ execution failed:',
             error
         );
 
-        executionStates = [];
-currentStep = 0;
+        programOutput = '';
 
-showNotice(
-    'Execution API unavailable. Please try again.'
-);
+        executionStates = [];
+        currentStep = 0;
+
+        showNotice(
+            error.message ||
+            'Execution API unavailable. Please try again.'
+        );
 
         render();
 
     } finally {
-
         $('runBtn').disabled = false;
-
-        $('runBtn').textContent =
-            '▶ Run Code';
+        $('runBtn').textContent = '▶ Run Code';
     }
 }
+
+ 
 
 
 function showNotice(message) {
