@@ -5009,3 +5009,19 @@ textarea:focus-visible {
     outline-offset: 2px;
 }
 
+
+/* =========================================================
+   FACULTY PORTAL BUTTON
+   ========================================================= */
+
+.faculty-portal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.faculty-portal-btn:hover {
+    transform: translateY(-1px);
+}
