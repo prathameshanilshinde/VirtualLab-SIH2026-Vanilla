@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VirtualLab | Faculty Dashboard</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+
+        <a href="./index.html" class="sidebar-brand">
+            <span class="brand-mark">VL</span>
+
+            <span class="brand-name">
+                Virtual<span>Lab</span>
+            </span>
+        </a>
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                Faculty Workspace
+            </span>
+
+            <nav class="sidebar-nav">
+
+                <a href="./faculty-dashboard.html" class="sidebar-link active">
+                    <span class="sidebar-icon">⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="#students" class="sidebar-link">
+                    <span class="sidebar-icon">◉</span>
+                    Students
+                </a>
+
+                <a href="#labs" class="sidebar-link">
+                    <span class="sidebar-icon">▣</span>
+                    Lab Attempts
+                </a>
+
+                <a href="#assessments" class="sidebar-link">
+                    <span class="sidebar-icon">✓</span>
+                    Assessments
+                </a>
+
+            </nav>
+
+        </div>
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                Account
+            </span>
+
+            <nav class="sidebar-nav">
+
+                <a href="#settings" class="sidebar-link">
+                    <span class="sidebar-icon">⚙</span>
+                    Settings
+                </a>
+
+                <a href="./index.html" class="sidebar-link">
+                    <span class="sidebar-icon">↪</span>
+                    Sign out
+                </a>
+
+            </nav>
+
+        </div>
+
+        <div class="sidebar-user">
+
+            <div class="avatar">
+                FC
+            </div>
+
+            <div class="sidebar-user-info">
+                <strong>Faculty</strong>
+                <span>Computer Science</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-topbar">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    Faculty Workspace
+                </span>
+
+                <h1>
+                    Faculty Dashboard
+                </h1>
+
+            </div>
+
+            <div class="topbar-user">
+
+                <div class="avatar small">
+                    FC
+                </div>
+
+                <div>
+                    <strong>Faculty</strong>
+                    <span>Computer Science</span>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="dashboard-content">
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <span class="stat-label">
+                        Active Students
+                    </span>
+
+                    <strong class="stat-value">
+                        42
+                    </strong>
+
+                    <span class="stat-change">
+                        Currently enrolled
+                    </span>
+                </article>
+
+                <article class="stat-card">
+                    <span class="stat-label">
+                        Lab Attempts
+                    </span>
+
+                    <strong class="stat-value">
+                        128
+                    </strong>
+
+                    <span class="stat-change">
+                        This semester
+                    </span>
+                </article>
+
+                <article class="stat-card">
+                    <span class="stat-label">
+                        Pending Reviews
+                    </span>
+
+                    <strong class="stat-value">
+                        14
+                    </strong>
+
+                    <span class="stat-change">
+                        Require attention
+                    </span>
+                </article>
+
+                <article class="stat-card">
+                    <span class="stat-label">
+                        Average Score
+                    </span>
+
+                    <strong class="stat-value">
+                        82%
+                    </strong>
+
+                    <span class="stat-change">
+                        Across assessments
+                    </span>
+                </article>
+
+            </section>
+
+            <section class="dashboard-section" id="students">
+
+                <div class="section-title-row">
+
+                    <div>
+                        <span class="section-eyebrow">
+                            Monitoring
+                        </span>
+
+                        <h2>
+                            Student activity
+                        </h2>
+                    </div>
+
+                </div>
+
+                <article class="continue-card">
+
+                    <div class="continue-content">
+
+                        <div class="lab-badge">
+                            LIVE MONITORING
+                        </div>
+
+                        <h3>
+                            Student Lab Activity
+                        </h3>
+
+                        <p>
+                            Monitor practical attempts, execution progress,
+                            diagnostics and viva assessments from one workspace.
+                        </p>
+
+                        <a href="#labs" class="btn btn-primary">
+                            View Lab Attempts
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+            <section class="dashboard-section" id="labs">
+
+                <div class="section-title-row">
+
+                    <div>
+                        <span class="section-eyebrow">
+                            Practical Work
+                        </span>
+
+                        <h2>
+                            Recent lab attempts
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div class="lab-grid">
+
+                    <article class="lab-card">
+
+                        <div class="lab-card-top">
+                            <span class="lab-number">01</span>
+
+                            <span class="lab-status available">
+                                Active
+                            </span>
+                        </div>
+
+                        <div class="lab-card-icon">
+                            LL
+                        </div>
+
+                        <h3>
+                            Linked List
+                        </h3>
+
+                        <p>
+                            Review student execution, pointer operations,
+                            memory visualization and assessment results.
+                        </p>
+
+                        <div class="lab-card-footer">
+
+                            <span>
+                                Data Structures
+                            </span>
+
+                            <a href="#assessments">
+                                Review →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <section class="dashboard-section" id="assessments">
+
+                <div class="section-title-row">
+
+                    <div>
+                        <span class="section-eyebrow">
+                            Assessment
+                        </span>
+
+                        <h2>
+                            Assessment overview
+                        </h2>
+                    </div>
+
+                </div>
+
+                <article class="continue-card">
+
+                    <div class="continue-content">
+
+                        <div class="lab-badge">
+                            ASSESSMENTS
+                        </div>
+
+                        <h3>
+                            Review student performance
+                        </h3>
+
+                        <p>
+                            Assessment analytics, viva results and practical
+                            performance will appear here as the backend is connected.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
